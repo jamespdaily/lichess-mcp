@@ -24,23 +24,23 @@ const TOOLS = [
   // Auth
   {
     name: "lichess_auth_start",
-    description: "Start the Lichess OAuth login flow. Opens a browser for authorization.",
+    description: "Start the Lichess OAuth login flow. Opens a browser for authorization. Use this to connect, sign in, or authenticate your Lichess chess account.",
     inputSchema: { type: "object" as const, properties: {} },
   },
   {
     name: "lichess_auth_status",
-    description: "Check if you are authenticated with Lichess and return account info.",
+    description: "Check if you are authenticated with Lichess and return account info. Use this to verify login status or confirm which Lichess chess account is connected.",
     inputSchema: { type: "object" as const, properties: {} },
   },
   // Account
   {
     name: "lichess_get_my_profile",
-    description: "Get your Lichess account profile and stats.",
+    description: "Get your Lichess account profile, ratings, and stats. Returns your chess rating, username, and performance across bullet, blitz, rapid, and classical time controls.",
     inputSchema: { type: "object" as const, properties: {} },
   },
   {
     name: "lichess_get_user",
-    description: "Get a Lichess user's public profile.",
+    description: "Get a Lichess user's public chess profile, ratings, and stats by username. Look up any player on Lichess.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -51,7 +51,7 @@ const TOOLS = [
   },
   {
     name: "lichess_get_my_games",
-    description: "Fetch your recent games.",
+    description: "Fetch your recent chess games from Lichess. Returns game history including moves, result, opponent, time control, and opening. Filter by color (white/black) or rated/casual.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -64,12 +64,12 @@ const TOOLS = [
   // Games
   {
     name: "lichess_get_ongoing_games",
-    description: "Get your currently active Lichess games.",
+    description: "Get your currently active or in-progress chess games on Lichess. Lists all games you are currently playing, including board position and whose turn it is.",
     inputSchema: { type: "object" as const, properties: {} },
   },
   {
     name: "lichess_create_challenge",
-    description: "Challenge a Lichess user to a game.",
+    description: "Challenge a Lichess player to a chess game. Send a game invite with custom time control (bullet, blitz, rapid, classical, correspondence), color choice, and rated or casual.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -84,7 +84,7 @@ const TOOLS = [
   },
   {
     name: "lichess_make_move",
-    description: "Make a move in a Lichess game using UCI notation (e.g. e2e4, e7e8q).",
+    description: "Play a chess move in an active Lichess game using UCI notation (e.g. e2e4, d7d5, e7e8q for promotion). Submit your move during a live game.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -96,7 +96,7 @@ const TOOLS = [
   },
   {
     name: "lichess_stream_game",
-    description: "Stream board state and moves for an ongoing game.",
+    description: "Stream the live board state, moves, and game events for an ongoing Lichess chess game. Get real-time updates including position, clocks, and chat.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -107,7 +107,7 @@ const TOOLS = [
   },
   {
     name: "lichess_resign",
-    description: "Resign a Lichess game.",
+    description: "Resign and forfeit an active Lichess chess game. Concedes the game to your opponent.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -118,7 +118,7 @@ const TOOLS = [
   },
   {
     name: "lichess_offer_draw",
-    description: "Offer or accept a draw in a Lichess game.",
+    description: "Offer, accept, or decline a draw in an active Lichess chess game. Propose a draw to your opponent or respond to their draw offer.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -131,7 +131,7 @@ const TOOLS = [
   // Analysis
   {
     name: "lichess_cloud_eval",
-    description: "Get Lichess cloud evaluation for a position in FEN notation.",
+    description: "Get Lichess cloud engine evaluation for a chess position in FEN notation. Returns the best move, score, and top lines from Stockfish cloud analysis.",
     inputSchema: {
       type: "object" as const,
       properties: {
@@ -143,12 +143,12 @@ const TOOLS = [
   },
   {
     name: "lichess_get_daily_puzzle",
-    description: "Get the Lichess daily puzzle.",
+    description: "Get today's Lichess daily chess puzzle. Returns the position, solution, and puzzle metadata for the puzzle of the day.",
     inputSchema: { type: "object" as const, properties: {} },
   },
   {
     name: "lichess_get_puzzle",
-    description: "Get a specific Lichess puzzle by ID.",
+    description: "Get a specific Lichess chess puzzle by ID. Returns the board position, moves, theme, and difficulty rating for the puzzle.",
     inputSchema: {
       type: "object" as const,
       properties: {
