@@ -1,0 +1,29 @@
+{
+  "name": "lichess-mcp",
+  "version": "1.0.0",
+  "description": "Lichess MCP server for Claude Code and Claude Desktop",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "lichess-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [
+    "lichess",
+    "mcp",
+    "chess"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "open": "^11.0.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "typescript": "^6.0.2"
+  }
+}
