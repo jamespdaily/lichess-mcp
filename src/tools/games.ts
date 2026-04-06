@@ -97,3 +97,48 @@ export async function offerDraw(
     ? `Draw offered/accepted for game ${gameId}.`
     : `Draw declined for game ${gameId}.`;
 }
+
+export async function abortGame(gameId: string): Promise<string> {
+  if (!api.isAuthenticated()) {
+    return "Not authenticated. Use lichess_auth_start to login.";
+  }
+  await api.post(`/api/board/game/${gameId}/abort`);
+  return `Game ${gameId} aborted.`;
+}
+
+export async function takeback(
+  gameId: string,
+  accept: boolean
+): Promise<string> {
+  if (!api.isAuthenticated()) {
+    return "Not authenticated. Use lichess_auth_start to login.";
+  }
+  const yesNo = accept ? "yes" : "no";
+  await api.post(`/api/board/game/${gameId}/takeback/${yesNo}`);
+  return accept
+    ? `Takeback offered/accepted for game ${gameId}.`
+    : `Takeback declined for game ${gameId}.`;
+}
+
+export async function sendChat(
+  gameId: string,
+  text: string,
+  room: string = "player"
+): Promise<string> {
+  if (!api.isAuthenticated()) {
+    return "Not authenticated. Use lichess_auth_start to login.";
+  }
+  await api.post(`/api/board/game/${gameId}/chat`, { room, text });
+  return `Message sent to ${room} chat in game ${gameId}.`;
+}
+
+export async function streamEvents(): Promise<string> {
+  if (!api.isAuthenticated()) {
+    return "Not authenticated. Use lichess_auth_start to login.";
+  }
+  const events = await api.getNdjsonStream("/api/stream/event");
+  if (events.length === 0) {
+    return "No pending events.";
+  }
+  return JSON.stringify(events, null, 2);
+}

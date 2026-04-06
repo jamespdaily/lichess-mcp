@@ -120,3 +120,47 @@ export interface TokenData {
   token_type: string;
   expires_at: number;
 }
+
+export interface ChallengeList {
+  in: LichessChallenge[];
+  out: LichessChallenge[];
+}
+
+export interface RatingHistoryPoint {
+  0: number; // year
+  1: number; // month (0-indexed)
+  2: number; // day
+  3: number; // rating
+}
+
+export interface RatingHistory {
+  name: string;
+  points: RatingHistoryPoint[];
+}
+
+export interface Crosstable {
+  users: Record<string, number>;
+  nbGames: number;
+  currentMatchScore?: Record<string, number>;
+}
+
+export interface LeaderboardUser {
+  id: string;
+  username: string;
+  title?: string;
+  perfs: Record<string, { rating: number; progress: number }>;
+}
+
+export interface Leaderboard {
+  users: LeaderboardUser[];
+}
+
+export interface PuzzleActivity {
+  date: number;
+  win: boolean;
+  puzzle: {
+    id: string;
+    rating: number;
+    themes: string[];
+  };
+}
